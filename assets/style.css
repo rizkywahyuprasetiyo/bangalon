@@ -1,0 +1,614 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+/* Mobile Menu */
+
+/* Nav */
+nav {
+  background: #fafafa;
+  padding: 5px 20px;
+  font-weight: 400;
+  box-shadow: 0 9px 19px rgba(0, 0, 0, 0.103);
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  color: #44bee4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.menu li {
+  font-size: 16px;
+  padding: 15px 5px;
+}
+
+.menu li a {
+  display: block;
+}
+
+.menu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.toggle {
+  order: 1;
+}
+
+.item.button {
+  order: 2;
+}
+
+.item {
+  width: 100%;
+  text-align: center;
+  order: 3;
+  display: none;
+}
+
+.item.active {
+  display: block;
+}
+
+.toggle {
+  cursor: pointer;
+}
+
+.bars {
+  background: #999;
+  display: inline-block;
+  height: 2px;
+  position: relative;
+  width: 18px;
+}
+
+.bars::before,
+.bars::after {
+  background: #999;
+  content: "";
+  display: inline-block;
+  height: 2px;
+  position: absolute;
+  width: 18px;
+}
+
+.bars::before {
+  top: 5px;
+}
+
+.bars::after {
+  top: -5px;
+}
+/* End Nav*/
+
+.container {
+  margin: 0 20px;
+}
+
+/* Hero */
+.hero {
+  padding: 50px 0;
+}
+
+.kanan img {
+  display: none;
+}
+
+.kiri {
+  text-align: center;
+}
+
+.kiri h1 {
+  font-weight: 700;
+  color: #44bee4;
+  font-size: 36px;
+}
+
+.kiri h1 span {
+  color: #90c336;
+}
+
+.kiri p {
+  margin-top: 16px;
+  margin-bottom: 50px;
+  color: #44bee4;
+  font-weight: 400;
+}
+
+.kiri a {
+  background: #44bee4;
+  color: white;
+  padding: 9px 18px;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.kiri a:hover {
+  box-shadow: 1px 9px 19px rgba(0, 0, 0, 0.123);
+  text-decoration: none;
+}
+
+/* End Hero */
+
+/* Produk */
+#produk {
+  background: #e8e8e8;
+  margin: 0;
+  padding-top: 10px;
+  padding-bottom: 30px;
+}
+
+.produk {
+  padding-top: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+#judul-produk {
+  margin-top: 30px;
+  text-align: center;
+  color: #44bee4;
+  font-weight: 700;
+  font-size: 28px;
+}
+
+.bg {
+  background: #fafafa;
+  border-radius: 10px;
+  display: flex;
+  padding: 30px;
+  margin-bottom: 16px;
+  flex-direction: column;
+  width: 100%;
+}
+
+.galon {
+  display: flex;
+  justify-content: center;
+}
+
+.bg h2 {
+  margin-top: 12px;
+  text-align: center;
+  font-size: 24px;
+}
+
+.bg h3 {
+  font-weight: 600;
+  text-align: center;
+}
+
+#galon {
+  color: #44bee4;
+  font-weight: 700;
+}
+
+#harga-galon {
+  color: #44bee4;
+}
+
+.gas {
+  display: flex;
+  justify-content: center;
+}
+
+#gas {
+  color: #90c336;
+}
+
+#harga-gas {
+  color: #90c336;
+}
+
+.bg a {
+  margin-top: 16px;
+  padding: 9px 18px;
+  background: #44bee4;
+  color: white;
+  text-align: center;
+  font-weight: 600;
+  border-radius: 5px;
+}
+
+.tombol-produk {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.tombol-produk a {
+  background: #44bee4;
+  color: white;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 9px 18px;
+  border-radius: 5px;
+}
+
+.tombol-produk a:hover {
+  box-shadow: 1px 9px 19px rgba(0, 0, 0, 0.123);
+  text-decoration: none;
+}
+
+/* End Produk */
+
+/* Langsung Antar */
+
+#langsung-antar {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  text-align: center;
+}
+
+.la-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.la-kiri {
+  order: 2;
+}
+
+.la-kanan {
+  order: 1;
+}
+
+.la-kiri h1 {
+  font-weight: 700;
+  color: #44bee4;
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.la-kiri p {
+  color: #44bee4;
+  margin-bottom: 30px;
+}
+
+.la-kiri a {
+  background: #44bee4;
+  color: white;
+  padding: 9px 18px;
+  border-radius: 5px;
+  font-weight: 600;
+}
+
+.la-kiri a:hover {
+  box-shadow: 1px 9px 19px rgba(0, 0, 0, 0.123);
+  text-decoration: none;
+}
+
+/* End Langsung Antar */
+
+/* Tanya */
+#tanya {
+  padding-top: 30px;
+  background: #44bee4;
+  padding-bottom: 30px;
+}
+
+.tanya-kanan {
+  text-align: center;
+}
+
+.tombol-hubungi {
+  display: flex;
+  justify-content: center;
+}
+
+.th-box {
+  margin-top: 18px;
+  width: 200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 1px;
+  background: #90c336;
+  border-radius: 20px;
+  padding: 10px 0;
+}
+
+.th-box h3 {
+  margin-left: 8px;
+}
+
+.tanya-kanan h1 {
+  color: white;
+  font-size: 28px;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.tanya-kanan p {
+  color: white;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.tombol-hubungi h3 {
+  color: white;
+}
+
+/* End Tanya */
+
+/* Profile */
+#profile {
+  padding: 30px 0;
+  background: #fafafa;
+}
+
+#judul-profile {
+  margin-bottom: 20px;
+  text-align: center;
+  color: #44bee4;
+}
+
+.konten {
+  display: flex;
+  justify-content: center;
+  margin: 5px 0;
+}
+
+.kartu {
+  background: white;
+  width: 80%;
+  border-radius: 5px;
+  box-shadow: 1px 9px 19px rgba(0, 0, 0, 0.123);
+  text-align: center;
+  padding: 30px 18px;
+  color: #44bee4;
+}
+
+.kartu h3 {
+  margin-top: 20px;
+  font-size: 24px;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.kartu h6 {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.gambar-profile {
+  display: flex;
+  justify-content: center;
+}
+
+.box-profile {
+  display: flex;
+  flex-direction: column;
+}
+
+@media all and (min-width: 576px) {
+  .box-profile {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .konten {
+    margin: 5px 5px;
+  }
+}
+
+/* End Profile */
+
+/* Footer */
+footer {
+  background: #44bee4;
+  color: white;
+  padding: 25px 0;
+}
+
+.konten-footer {
+  display: flex;
+  justify-content: center;
+  font-weight: 400;
+}
+/* End Footer */
+
+@media all and (max-width: 576px) {
+  .la-kanan img#gambar-la-mobile {
+    margin-bottom: 10px;
+  }
+
+  .la-kanan img#gambar-la-desktop {
+    display: none;
+  }
+
+  .tanya-kiri img {
+    margin-left: -80px;
+  }
+}
+
+/* End Tanya */
+
+/* End Mobile */
+
+/* Tablet */
+@media all and (min-width: 576px) {
+  .produk {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .bg {
+    margin: 16px;
+  }
+
+  .la-kanan img#gambar-la-mobile {
+    display: none;
+  }
+
+  .ctanya {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .tanya-kanan {
+    text-align: left;
+    margin-left: 25px;
+  }
+
+  .tombol-hubungi {
+    justify-content: left;
+  }
+
+  .kartu {
+    width: 250px;
+  }
+}
+
+/* Laptop */
+@media all and (min-width: 768px) {
+  /* Nav Laptop*/
+  .logo {
+    flex: 1;
+  }
+
+  .item {
+    display: block;
+    width: auto;
+  }
+
+  .button a {
+    padding: 7px 15px;
+    background: #44bee4;
+    border-radius: 5px;
+    color: white;
+  }
+
+  .toggle {
+    display: none;
+  }
+
+  .logo {
+    order: 0;
+  }
+
+  .item {
+    order: 1;
+  }
+
+  .butoon {
+    width: auto;
+    order: 2;
+    display: block;
+  }
+
+  .menu li {
+    padding: 15px 10px;
+  }
+
+  .menu li.button {
+    padding-right: 0;
+  }
+
+  /* End Nav Laptop */
+
+  main {
+    margin: 0;
+  }
+
+  .container {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  /* Produk */
+  .bg {
+    width: 300px;
+    align-self: flex-end;
+  }
+  /* End Produk */
+
+  /* Langsung Antar */
+  .la-box {
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+  }
+
+  .la-kiri {
+    order: 1;
+  }
+
+  .la-kanan {
+    order: 2;
+  }
+
+  .tanya-kiri img {
+    width: 100%;
+  }
+
+  /* End Langsung Antar */
+}
+
+/* Desktop */
+@media all and (min-width: 992px) {
+  /* Hero Desktop */
+  .hero {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .kiri {
+    flex: 1;
+    text-align: left;
+  }
+
+  .kanan {
+    flex-grow: 4;
+    flex: 1;
+  }
+
+  .kiri h1 {
+    font-size: 48px;
+  }
+
+  .kiri p {
+    font-size: 20px;
+  }
+
+  .kanan img {
+    display: inline-block;
+    padding: 20px;
+  }
+  /* End Hero Desktop */
+
+  /* Langsung Antar */
+  .la-kiri h1 {
+    font-size: 36px;
+  }
+
+  .la-kiri p {
+    font-size: 18px;
+  }
+
+  .la-kanan img {
+    width: 100%;
+  }
+  /* End Langsung Antar */
+}
