@@ -620,3 +620,12 @@ footer {
   }
   /* End Langsung Antar */
 }
+
+/* Halaman Daftar */
+.border-daftar {
+  border-radius: 16px;
+  font-family: "Nunito", "sans-serif";
+  font-size: 14px;
+  font-weight: 500;
+}
+/* Halaman Daftar */
