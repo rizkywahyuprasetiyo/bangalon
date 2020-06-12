@@ -65,6 +65,7 @@
               </div>
               <h2 id="galon">AIR GALON</h2>
               <h3 id="harga-galon">Rp. 6.000./galon</h3>
+              <h3 id="stock">Tersedia</h3>
             </div>
             <div class="bg">
               <div class="gas">
@@ -72,6 +73,7 @@
               </div>
               <h2 id="gas">GAS ELPIJI 3 Kg</h2>
               <h3 id="harga-gas">Rp. 22.000./tabung</h3>
+              <h3 id="stock">Tersedia</h3>
             </div>
           </div>
           <div class="tombol-produk">

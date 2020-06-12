@@ -247,6 +247,14 @@ a:hover {
   text-decoration: none;
 }
 
+#stock {
+  background: rgba(132, 216, 241, 0.342);
+  margin: 10px 0;
+  padding: 10px 0;
+  color: rgb(47, 47, 47);
+  border-radius: 10px;
+}
+
 /* End Produk */
 
 /* Langsung Antar */
