@@ -1,3 +1,43 @@
+<?php
+include 'koneksi.php';
+
+if(isset($_POST['register'])){
+  $nama = $_POST['nama'];
+  $email = $_POST['email'];
+  $nomor = $_POST['nomor'];
+  $alamat = $_POST['alamat'];
+  $password = $_POST['password1'];
+  $password2 = $_POST['password2'];
+  // echo $nama;
+  // echo $email;
+  // echo $nomor;
+  // echo $alamat;
+  // echo $password;
+  // echo $password2;
+  
+
+  $cek_email = mysqli_query($conn, "SELECT * FROM `user` WHERE `email` = '$email'");
+  if(mysqli_fetch_assoc($cek_email)){
+    echo "<script>alert('Email sudah terdaftar!');</script>";
+    return false;
+  }
+  
+  if($password !== $password2){
+    echo "<script>alert('Konfirmasi password tidak sesuai');</script>";
+    return false;
+  }
+
+  $hasil = mysqli_query($conn, "INSERT INTO `user` (`id`, `nama`, `email`, `nomorwa`, `alamat`, `password`) VALUES (NULL, '$nama', '$email', '$nomor', '$alamat', '$password')");
+	if ($hasil > 0){
+		echo "<script>alert('Akun berhasil di daftarkan!'); document.location.href='login.php';</script>";
+		exit;
+	}else{
+		echo "<script>alert('Akun gagal di daftarkan!'); document.location.href='';</script>";
+		exit;
+	}
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,35 +75,32 @@
               <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">Buat akun Anda</h1>
               </div>
-              <form class="user">
+              <form class="user" action="" method="post">
               <div class="form-group">
-                  <input type="text" class="form-control form-control-user" id="exampleInputText" placeholder="Nama Lengkap">
+                  <input type="text" name="nama" class="form-control form-control-user" id="exampleInputText" placeholder="Nama Lengkap">
                 </div>
                 <div class="form-group">
-                  <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email">
+                  <input type="email" name="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email">
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-user" id="exampleInputEmail" placeholder="Nomor HP/WA">
+                  <input type="text" name="nomor" class="form-control form-control-user" id="exampleInputEmail" placeholder="Nomor HP/WA">
                 </div>
                 <div class="form-group">
-                  <textarea class="form-control border-daftar" id="exampleFormControlTextarea1" rows="3" placeholder="Alamat Rumah"></textarea>
+                  <textarea class="form-control border-daftar" name="alamat" id="exampleFormControlTextarea1" rows="3" placeholder="Alamat Rumah"></textarea>
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+                    <input type="password" name="password1" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
                   </div>
                   <div class="col-sm-6">
-                    <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Konfirmasi Password">
+                    <input type="password" name="password2" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Konfirmasi Password">
                   </div>
                 </div>
-                <a href="login.html" class="btn btn-primary btn-user btn-block">
+                <button class="btn btn-primary btn-user btn-block" type="submit" name="register">
                   Buat Akun
-                </a>
+                </button>
               </form>
               <hr>
-              <div class="text-center">
-                <a class="small" href="lupa-password.php">Lupa Password?</a>
-              </div>
               <div class="text-center">
                 <a class="small" href="login.php">Suda punya akun? Silahkan masuk.</a>
               </div>

@@ -5,4 +5,6 @@ $password = "";
 $db = "bangalon";
 
 // Create connection
-$koneksi = mysqli_connect($servername, $username, $password, $db);
+$conn = mysqli_connect($servername, $username, $password, $db);
+
+?>
