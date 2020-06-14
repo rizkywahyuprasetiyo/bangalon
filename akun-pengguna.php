@@ -208,7 +208,7 @@ $ambil = mysqli_query($conn, "SELECT * FROM `user`");
                         <td><?php echo $row['email']; ?></td>
                         <td><?php echo $row['nomorwa']; ?></td>
                         <td><?php echo $row['alamat']; ?></td>
-                        <td><a class="btn btn-success mr-1" href="#" role="button"><i class="fas fa-edit"></i> Edit</a><a class="btn btn-warning" href="#" role="button"><i class="fas fa-trash"></i> Hapus</a></td>
+                        <td><a class="btn btn-warning mr-1" href="hapus-pengguna.php?id=<?= $row['id']; ?>" role="button"><i class="fas fa-trash"></i> Hapus</a><a class="btn btn-danger" href="reset-password-pengguna.php?id=<?= $row['id']; ?>" role="button"><i class="fas fa-key"></i> Reset Password</a></td>
                       </tr>
                         <?php endwhile; ?>
                     </tbody>

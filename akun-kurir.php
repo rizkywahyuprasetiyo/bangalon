@@ -1,3 +1,10 @@
+<?php
+include 'koneksi.php';
+
+$ambil = mysqli_query($conn, "SELECT * FROM `kurir`");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -150,20 +157,21 @@
           <!-- Begin Page Content -->
           <div class="container-fluid">
             <!-- Page Heading -->
-            <h1 class="h3 mb-2 text-gray-800">Data Akun Admin</h1>
+            <h1 class="h3 mb-2 text-gray-800">Data Akun Kurir</h1>
             <p class="mb-4">
-              Data ini berisi tentang akun dari admin.
+              Data ini berisi tentang akun dari kurir.
             </p>
 
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
               <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">
-                  Data Akun Admin
+                  Data Akun Kurir
                 </h6>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
+                <a class="btn btn-primary mb-3" href="tambah-kurir.php" role="button"><i class="fas fa-plus"></i> Tambah Akun</a>
                   <table
                     class="table table-bordered"
                     id="dataTable"
@@ -175,6 +183,7 @@
                         <th>No</th>
                         <th>Nama</th>
                         <th>Email</th>
+                        <th>Nomor WA</th>
                         <th>Tindakan</th>
                       </tr>
                     </thead>
@@ -183,16 +192,23 @@
                         <th>No</th>
                         <th>Nama</th>
                         <th>Email</th>
+                        <th>Nomor WA</th>
                         <th>Tindakan</th>
                       </tr>
                     </tfoot>
                     <tbody>
+                      <?php
+                        $no = 1;
+                        while($row = mysqli_fetch_assoc($ambil)):
+                      ?>
                       <tr>
-                        <td>1</td>
-                        <td>Rizky Wahyu Prasetiyo</td>
-                        <td>rizkywahyu@gmail.com</td>
-                        <td><a class="btn btn-success mr-1 mb-1" href="#" role="button"><i class="fas fa-edit"></i></a><a class="btn btn-warning mr-1 mb-1" href="#" role="button"><i class="fas fa-trash"></i></a></td>
+                        <td><?= $no++; ?></td>
+                        <td><?= $row['nama']; ?></td>
+                        <td><?= $row['email']; ?></td>
+                        <td><?= $row['nomor']; ?></td>
+                        <td><a class="btn btn-warning mr-1 mb-1" href="hapus-kurir.php?id=<?= $row['id']; ?>" role="button"><i class="fas fa-trash"></i> Hapus</a><a class="btn btn-danger mb-1 mr-1" href="reset-password-kurir.php?id=<?= $row['id']; ?>" role="button"><i class="fas fa-key"></i> Reset Password</a></td>
                       </tr>
+                      <?php endwhile; ?>
                     </tbody>
                   </table>
                 </div>

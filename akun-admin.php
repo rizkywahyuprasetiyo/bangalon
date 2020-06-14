@@ -100,7 +100,7 @@ $ambil = mysqli_query($conn, "SELECT * FROM `admin`");
                         <td><?php echo $no++; ?></td>
                         <td><?php echo $row['nama']; ?></td>
                         <td><?php echo $row['email']; ?></td>
-                        <td><a class="btn btn-success mr-1 mb-1" href="#" role="button"><i class="fas fa-edit"></i> Edit</a><a class="btn btn-warning mr-1 mb-1" href="#" role="button"><i class="fas fa-trash"></i> Hapus</a></td>
+                        <td><a class="btn btn-success mr-1 mb-1" href="ubah-admin.php?id=<?php echo $row['id']; ?>" role="button"><i class="fas fa-edit"></i> Edit</a><a class="btn btn-warning mr-1 mb-1" href="hapus-admin.php?id=<?php echo $row['id']; ?>" role="button"><i class="fas fa-trash"></i> Hapus</a></td>
                       </tr>
                       <?php endwhile; ?>
                     </tbody>
