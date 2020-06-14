@@ -4,12 +4,10 @@ include 'koneksi.php';
 if(isset($_POST['register'])){
   $nama = $_POST['nama'];
   $email = $_POST['email'];
-  $nomor = $_POST['nomor'];
-  $alamat = $_POST['alamat'];
   $password = $_POST['password1'];
   $password2 = $_POST['password2'];
 
-  $cek_email = mysqli_query($conn, "SELECT * FROM `user` WHERE `email` = '$email'");
+  $cek_email = mysqli_query($conn, "SELECT * FROM `admin` WHERE `email` = '$email'");
   if(mysqli_fetch_assoc($cek_email)){
     echo "<script>alert('Email sudah terdaftar!');</script>";
     return false;
@@ -20,9 +18,9 @@ if(isset($_POST['register'])){
     return false;
   }
 
-  $hasil = mysqli_query($conn, "INSERT INTO `user` (`id`, `nama`, `email`, `nomorwa`, `alamat`, `password`) VALUES (NULL, '$nama', '$email', '$nomor', '$alamat', '$password')");
+  $hasil = mysqli_query($conn, "INSERT INTO `admin` (`id`, `nama`, `email`, `password`) VALUES (NULL, '$nama', '$email', '$password')");
 	if ($hasil > 0){
-		echo "<script>alert('Akun berhasil di daftarkan!'); document.location.href='login.php';</script>";
+		echo "<script>alert('Akun berhasil di daftarkan!'); document.location.href='akun-admin.php';</script>";
 		exit;
 	}else{
 		echo "<script>alert('Akun gagal di daftarkan!'); document.location.href='';</script>";
@@ -74,12 +72,6 @@ if(isset($_POST['register'])){
                 </div>
                 <div class="form-group">
                   <input type="email" name="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email">
-                </div>
-                <div class="form-group">
-                  <input type="text" name="nomor" class="form-control form-control-user" id="exampleInputEmail" placeholder="Nomor HP/WA">
-                </div>
-                <div class="form-group">
-                  <textarea class="form-control border-daftar" name="alamat" id="exampleFormControlTextarea1" rows="3" placeholder="Alamat Rumah"></textarea>
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">

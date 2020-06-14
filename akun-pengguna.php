@@ -1,3 +1,10 @@
+<?php
+include 'koneksi.php';
+
+$ambil = mysqli_query($conn, "SELECT * FROM `user`");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -175,6 +182,8 @@
                         <th>No</th>
                         <th>Nama</th>
                         <th>Email</th>
+                        <th>Nomor WA</th>
+                        <th>Alamat</th>
                         <th>Tindakan</th>
                       </tr>
                     </thead>
@@ -183,16 +192,25 @@
                         <th>No</th>
                         <th>Nama</th>
                         <th>Email</th>
+                        <th>Nomor WA</th>
+                        <th>Alamat</th>
                         <th>Tindakan</th>
                       </tr>
                     </tfoot>
                     <tbody>
                       <tr>
-                        <td>1</td>
-                        <td>Rizky Wahyu Prasetiyo</td>
-                        <td>rizkywahyu@gmail.com</td>
-                        <td><a class="btn btn-success mr-1 mb-1" href="#" role="button"><i class="fas fa-edit"></i></a><a class="btn btn-warning mr-1 mb-1" href="#" role="button"><i class="fas fa-trash"></i></a></td>
+                      <?php
+                        $no = 1;
+                        while($row = mysqli_fetch_assoc($ambil)):
+                      ?>
+                        <td><?php echo $no++; ?></td>
+                        <td><?php echo $row['nama']; ?></td>
+                        <td><?php echo $row['email']; ?></td>
+                        <td><?php echo $row['nomorwa']; ?></td>
+                        <td><?php echo $row['alamat']; ?></td>
+                        <td><a class="btn btn-success mr-1" href="#" role="button"><i class="fas fa-edit"></i> Edit</a><a class="btn btn-warning" href="#" role="button"><i class="fas fa-trash"></i> Hapus</a></td>
                       </tr>
+                        <?php endwhile; ?>
                     </tbody>
                   </table>
                 </div>

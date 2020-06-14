@@ -1,3 +1,29 @@
+<?php
+session_start();
+include 'koneksi.php';
+
+if(isset($_POST['login'])){
+  $email = $_POST['email'];
+  $password = $_POST['password'];
+
+  $cek = mysqli_query($conn, "SELECT * FROM `admin` WHERE email = '$email'");
+  
+  if(mysqli_num_rows($cek) === 1){
+    $pass = mysqli_fetch_assoc($cek);
+    if($password == $pass['password']){
+      header('Location: dashboard-admin.php');
+      $_SESSION['masuk'] = true;
+      exit;
+    }else{
+      echo "<script>alert('Password yang Anda masukkan salah!');</script>";
+    }
+  }else{
+    echo "<script>alert('Email tidak terdaftar!');</script>";
+    exit;
+  }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
