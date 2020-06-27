@@ -6,13 +6,14 @@ if (isset($_POST['login'])) {
   $email = $_POST['email'];
   $password = $_POST['password'];
 
-  $cek = mysqli_query($conn, "SELECT * FROM `admin` WHERE email = '$email'");
+  $cek = mysqli_query($conn, "SELECT * FROM `user` WHERE `email` = '$email'");
 
   if (mysqli_num_rows($cek) === 1) {
     $pass = mysqli_fetch_assoc($cek);
     if ($password == $pass['password']) {
-      header('Location: dashboard-admin.php');
+      header('Location: dashboard-pengguna.php');
       $_SESSION['masuk'] = true;
+      $_SESSION['id'] = $pass['id'];
       exit;
     } else {
       echo "<script>alert('Password yang Anda masukkan salah!');</script>";

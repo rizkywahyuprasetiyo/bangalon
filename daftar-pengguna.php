@@ -1,7 +1,7 @@
 <?php
 include 'koneksi.php';
 
-if(isset($_POST['register'])){
+if (isset($_POST['register'])) {
   $nama = $_POST['nama'];
   $email = $_POST['email'];
   $nomor = $_POST['nomor'];
@@ -10,24 +10,24 @@ if(isset($_POST['register'])){
   $password2 = $_POST['password2'];
 
   $cek_email = mysqli_query($conn, "SELECT * FROM `user` WHERE `email` = '$email'");
-  if(mysqli_fetch_assoc($cek_email)){
+  if (mysqli_fetch_assoc($cek_email)) {
     echo "<script>alert('Email sudah terdaftar!');</script>";
     return false;
   }
-  
-  if($password !== $password2){
+
+  if ($password !== $password2) {
     echo "<script>alert('Konfirmasi password tidak sesuai');</script>";
     return false;
   }
 
   $hasil = mysqli_query($conn, "INSERT INTO `user` (`id`, `nama`, `email`, `nomorwa`, `alamat`, `password`) VALUES (NULL, '$nama', '$email', '$nomor', '$alamat', '$password')");
-	if ($hasil > 0){
-		echo "<script>alert('Akun berhasil di daftarkan!'); document.location.href='login.php';</script>";
-		exit;
-	}else{
-		echo "<script>alert('Akun gagal di daftarkan!'); document.location.href='';</script>";
-		exit;
-	}
+  if ($hasil > 0) {
+    echo "<script>alert('Akun berhasil di daftarkan!'); document.location.href='login.php';</script>";
+    exit;
+  } else {
+    echo "<script>alert('Akun gagal di daftarkan!'); document.location.href='';</script>";
+    exit;
+  }
 }
 ?>
 
@@ -69,24 +69,24 @@ if(isset($_POST['register'])){
                 <h1 class="h4 text-gray-900 mb-4">Buat akun Anda</h1>
               </div>
               <form class="user" action="" method="post">
-              <div class="form-group">
-                  <input type="text" name="nama" class="form-control form-control-user" id="exampleInputText" placeholder="Nama Lengkap">
+                <div class="form-group">
+                  <input type="text" name="nama" class="form-control form-control-user" id="exampleInputText" placeholder="Nama Lengkap" required>
                 </div>
                 <div class="form-group">
-                  <input type="email" name="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email">
+                  <input type="email" name="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email" required>
                 </div>
                 <div class="form-group">
-                  <input type="text" name="nomor" class="form-control form-control-user" id="exampleInputEmail" placeholder="Nomor HP/WA">
+                  <input type="text" name="nomor" class="form-control form-control-user" id="exampleInputEmail" placeholder="Nomor HP/WA" required>
                 </div>
                 <div class="form-group">
-                  <textarea class="form-control border-daftar" name="alamat" id="exampleFormControlTextarea1" rows="3" placeholder="Alamat Rumah"></textarea>
+                  <textarea class="form-control border-daftar" name="alamat" id="exampleFormControlTextarea1" rows="3" placeholder="Alamat Rumah" required></textarea>
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="password" name="password1" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+                    <input type="password" name="password1" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password" required>
                   </div>
                   <div class="col-sm-6">
-                    <input type="password" name="password2" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Konfirmasi Password">
+                    <input type="password" name="password2" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Konfirmasi Password" required>
                   </div>
                 </div>
                 <button class="btn btn-primary btn-user btn-block" type="submit" name="register">
@@ -95,7 +95,7 @@ if(isset($_POST['register'])){
               </form>
               <hr>
               <div class="text-center">
-                <a class="small" href="login.php">Suda punya akun? Silahkan masuk.</a>
+                <a class="small" href="login-pengguna.php">Suda punya akun? Silahkan masuk.</a>
               </div>
             </div>
           </div>

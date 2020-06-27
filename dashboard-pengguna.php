@@ -1,7 +1,11 @@
 <?php
+session_start();
 include 'koneksi.php';
+$id = $_SESSION['id'];
+$cek = mysqli_query($conn, "SELECT * FROM `user` WHERE `id` = $id");
+$row = mysqli_fetch_assoc($cek);
 
-$ambil = mysqli_query($conn, "SELECT * FROM `user`");
+$qpesan = mysqli_query($conn, "SELECT * FROM `pesanan` WHERE `id` = $id");
 
 ?>
 
@@ -9,30 +13,23 @@ $ambil = mysqli_query($conn, "SELECT * FROM `user`");
 <html lang="en">
 
 <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <meta name="description" content="" />
-  <meta name="author" content="" />
-
-  <title>Akun Admin</title>
-
-  <!-- Custom fonts for this template -->
-  <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
-
-  <!-- Custom styles for this template -->
-  <link href="assets/css/sb-admin-2.min.css" rel="stylesheet" />
-
-  <!-- Custom styles for this page -->
-  <link href="assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Dashboard Admin</title>
+  <!-- Custom fonts for this template-->
+  <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <!-- Custom styles for this template-->
+  <link href="assets/css/sb-admin-2.min.css" rel="stylesheet" type="text/css">
 </head>
 
 <body id="page-top">
   <!-- Page Wrapper -->
   <div id="wrapper">
-    <?php include('sidebar-admin.php'); ?>
-
+    <?php include('sidebar-pengguna.php'); ?>
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
       <!-- Main Content -->
@@ -69,47 +66,70 @@ $ambil = mysqli_query($conn, "SELECT * FROM `user`");
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
-                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60" />
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $row['nama']; ?></span>
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="profile-pengguna.php?id=<?= $row['id']; ?>">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Settings
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Activity Log
-                </a>
-                <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Logout
+                  Keluar
                 </a>
               </div>
             </li>
           </ul>
         </nav>
         <!-- End of Topbar -->
-
         <!-- Begin Page Content -->
         <div class="container-fluid">
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Data Akun Pengguna</h1>
-          <p class="mb-4">
-            Data ini berisi tentang akun dari pengguna.
-          </p>
-
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+          </div>
+          <!-- Content Row -->
+          <div class="row">
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">Air Galon</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">Rp. 5.000.</div>
+                      <span class="badge badge-info">Tersedia</span>
+                      <a href="pesan-air-galon.php?id=<?= $row['id']; ?>" class="d-none d-sm-inline-block btn btn-primary shadow-sm mt-5"><i class="fas fa-shopping-cart text-white-50"></i> Pesan Sekarang</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-lg font-weight-bold text-success text-uppercase mb-1">Gas Elpiji</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">Rp. 27.000.</div>
+                      <span class="badge badge-info">Tersedia</span>
+                      <a href="pesan-gas-elpiji.php?id=<?= $row['id']; ?>" class="d-none d-sm-inline-block btn btn-primary shadow-sm mt-5"><i class="fas fa-shopping-cart text-white-50"></i> Pesan Sekarang</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800 mt-2">Tabel Pesanan</h1>
+          </div>
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary">
-                Data Akun Pengguna
+                Tabel Pesanan
               </h6>
             </div>
             <div class="card-body">
@@ -118,37 +138,43 @@ $ambil = mysqli_query($conn, "SELECT * FROM `user`");
                   <thead>
                     <tr>
                       <th>No</th>
-                      <th>Nama</th>
-                      <th>Email</th>
-                      <th>Nomor WA</th>
+                      <th>No Transaksi</th>
+                      <th>Nama Barang</th>
                       <th>Alamat</th>
+                      <th>Jumlah</th>
+                      <th>Total</th>
+                      <th>Status</th>
                       <th>Tindakan</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
                       <th>No</th>
-                      <th>Nama</th>
-                      <th>Email</th>
-                      <th>Nomor WA</th>
+                      <th>No Transaksi</th>
+                      <th>Nama Barang</th>
                       <th>Alamat</th>
+                      <th>Jumlah</th>
+                      <th>Total</th>
+                      <th>Status</th>
                       <th>Tindakan</th>
                     </tr>
                   </tfoot>
                   <tbody>
-                    <tr>
-                      <?php
-                      $no = 1;
-                      while ($row = mysqli_fetch_assoc($ambil)) :
-                      ?>
-                        <td><?php echo $no++; ?></td>
-                        <td><?php echo $row['nama']; ?></td>
-                        <td><?php echo $row['email']; ?></td>
-                        <td><?php echo $row['nomorwa']; ?></td>
-                        <td><?php echo $row['alamat']; ?></td>
-                        <td><a class="btn btn-warning mr-1" href="hapus-pengguna.php?id=<?= $row['id']; ?>" role="button"><i class="fas fa-trash"></i> Hapus</a><a class="btn btn-danger" href="reset-password-pengguna.php?id=<?= $row['id']; ?>" role="button"><i class="fas fa-key"></i> Reset Password</a></td>
-                    </tr>
-                  <?php endwhile; ?>
+                    <?php
+                    $no = 1;
+                    while ($ambil_pesanan = mysqli_fetch_assoc($qpesan)) :
+                    ?>
+                      <tr>
+                        <td><?= $no++; ?></td>
+                        <td><?= $ambil_pesanan['no_transaksi']; ?></td>
+                        <td><?= $ambil_pesanan['nama_barang']; ?></td>
+                        <td><?= $ambil_pesanan['alamat']; ?></td>
+                        <td><?= $ambil_pesanan['jumlah']; ?></td>
+                        <td><?= $ambil_pesanan['harga']; ?></td>
+                        <td><span class="badge badge-info"><?= $ambil_pesanan['status']; ?></span></td>
+                        <td><a class="btn btn-success mr-1 mb-1 btn-sm" href="hapus-admin.php?id=<?php echo $row['id']; ?>" role="button"><i class="fas fa-edit"></i> Edit</a><a class="btn btn-warning mr-1 mb-1 btn-sm" href="hapus-admin.php?id=<?php echo $row['id']; ?>" role="button"><i class="fas fa-trash"></i> Hapus</a></td>
+                      </tr>
+                    <?php endwhile; ?>
                   </tbody>
                 </table>
               </div>
@@ -158,7 +184,6 @@ $ambil = mysqli_query($conn, "SELECT * FROM `user`");
         <!-- /.container-fluid -->
       </div>
       <!-- End of Main Content -->
-
       <!-- Footer -->
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
@@ -168,8 +193,10 @@ $ambil = mysqli_query($conn, "SELECT * FROM `user`");
         </div>
       </footer>
       <!-- End of Footer -->
+
     </div>
     <!-- End of Content Wrapper -->
+
   </div>
   <!-- End of Page Wrapper -->
 
@@ -188,14 +215,10 @@ $ambil = mysqli_query($conn, "SELECT * FROM `user`");
             <span aria-hidden="true">×</span>
           </button>
         </div>
-        <div class="modal-body">
-          Select "Logout" below if you are ready to end your current session.
-        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">
-            Cancel
-          </button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="keluar.php">Logout</a>
         </div>
       </div>
     </div>
@@ -212,11 +235,12 @@ $ambil = mysqli_query($conn, "SELECT * FROM `user`");
   <script src="assets/js/sb-admin-2.min.js"></script>
 
   <!-- Page level plugins -->
-  <script src="assets/vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+  <script src="assets/vendor/chart.js/Chart.min.js"></script>
 
   <!-- Page level custom scripts -->
-  <script src="assets/js/demo/datatables-demo.js"></script>
+  <script src="assets/js/demo/chart-area-demo.js"></script>
+  <script src="assets/js/demo/chart-pie-demo.js"></script>
+
 </body>
 
 </html>

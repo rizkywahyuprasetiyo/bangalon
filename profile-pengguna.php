@@ -1,29 +1,52 @@
 <?php
+session_start();
 include 'koneksi.php';
-
 $id = $_GET['id'];
-
-$ambil = mysqli_query($conn, "SELECT * FROM `admin` WHERE id = '$id'");
-$row = mysqli_fetch_assoc($ambil);
+$ambil_data = mysqli_query($conn, "SELECT * FROM `user` WHERE `id` = $id");
+$ubah_data = mysqli_fetch_assoc($ambil_data);
 
 if (isset($_POST['register'])) {
   $nama = $_POST['nama'];
   $email = $_POST['email'];
+  $nomor = $_POST['nomor'];
+  $alamat = $_POST['alamat'];
   $password = $_POST['password1'];
   $password2 = $_POST['password2'];
-  $passwordlama = $row['password'];
 
-  if ($password == "") {
-    $passwordkirim = $passwordlama;
+  if ($_POST['nama'] == "") {
+    $nama_kirim = $ubah_data['nama'];
   } else {
-    $passwordkirim = $password;
+    $nama_kirim = $nama;
   }
 
-  $temp = mysqli_query($conn, "UPDATE `admin` SET `email` = 'NULL' WHERE `id` = $id");
-  $cek_email = mysqli_query($conn, "SELECT * FROM `admin` WHERE `email` = '$email'");
-  if (mysqli_fetch_assoc($cek_email)) {
-    echo "<script>alert('Email sudah terdaftar!');</script>";
-    return false;
+  if ($_POST['email'] == "") {
+    $email_kirim = $ubah_data['email'];
+  } else {
+    $temp = mysqli_query($conn, "UPDATE `user` SET `email` = 'NULL' WHERE `id` = $id");
+    $cek_email = mysqli_query($conn, "SELECT * FROM `user` WHERE `email` = '$email'");
+    if (mysqli_fetch_assoc($cek_email)) {
+      echo "<script>alert('Email sudah terdaftar!');</script>";
+      return false;
+    }
+    $email_kirim = $email;
+  }
+
+  if ($_POST['nomor'] == "") {
+    $nomor_kirim = $ubah_data['nomorwa'];
+  } else {
+    $nomor_kirim = $nomor;
+  }
+
+  if ($_POST['alamat'] == "") {
+    $alamat_kirim = $ubah_data['alamat'];
+  } else {
+    $alamat_kirim = $alamat;
+  }
+
+  if ($_POST['password1'] == "") {
+    $password_kirim = $ubah_data['password'];
+  } else {
+    $password_kirim = $password;
   }
 
   if ($password !== $password2) {
@@ -31,10 +54,9 @@ if (isset($_POST['register'])) {
     return false;
   }
 
-
-  $hasil = mysqli_query($conn, "UPDATE `admin` SET `nama`='$nama', `email`='$email', `password`='$passwordkirim' WHERE `id` = $id");
+  $hasil = mysqli_query($conn, "UPDATE `user` SET `nama`='$nama_kirim', `email`='$email_kirim', `nomorwa` = '$nomor_kirim', `alamat` = '$alamat_kirim', `password`='$password_kirim' WHERE `id` = $id");
   if (mysqli_affected_rows($conn) > 0) {
-    echo "<script>alert('Akun berhasil di perbaharui!'); document.location.href='akun-admin.php';</script>";
+    echo "<script>alert('Akun berhasil di perbaharui!'); document.location.href='';</script>";
     exit;
   } else {
     echo "<script>alert('Akun gagal di perbaharui!'); document.location.href='';</script>";
@@ -81,12 +103,17 @@ if (isset($_POST['register'])) {
                 <h1 class="h4 text-gray-900 mb-4">Buat akun Anda</h1>
               </div>
               <form class="user" action="" method="post">
-                <input type="hidden" name="passwordlama" value="<?php $row['password']; ?>">
                 <div class="form-group">
-                  <input type="text" name="nama" value="<?php echo $row['nama']; ?>" class="form-control form-control-user" id="exampleInputText" placeholder="Nama Lengkap">
+                  <input type="text" name="nama" class="form-control form-control-user" id="exampleInputText" placeholder="<?= $ubah_data['nama']; ?>">
                 </div>
                 <div class="form-group">
-                  <input type="email" name="email" value="<?php echo $row['email']; ?>" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email">
+                  <input type="email" name="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="<?= $ubah_data['email']; ?>">
+                </div>
+                <div class="form-group">
+                  <input type="text" name="nomor" class="form-control form-control-user" id="exampleInputEmail" placeholder="<?= $ubah_data['nomorwa']; ?>">
+                </div>
+                <div class="form-group">
+                  <textarea class="form-control border-daftar p-3" name="alamat" id="exampleFormControlTextarea1" rows="3" placeholder="<?= $ubah_data['alamat']; ?>"></textarea>
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
@@ -97,12 +124,12 @@ if (isset($_POST['register'])) {
                   </div>
                 </div>
                 <button class="btn btn-primary btn-user btn-block" type="submit" name="register">
-                  Perbaharui
+                  Update Informasi Profile
                 </button>
               </form>
               <hr>
               <div class="text-center">
-                <a class="small" href="login.php">Suda punya akun? Silahkan masuk.</a>
+                <a class="small" href="dashboard-pengguna.php">Kembali ke dashboard.</a>
               </div>
             </div>
           </div>
