@@ -4,9 +4,9 @@ $id = $_GET['id'];
 $ambil = mysqli_query($conn, "SELECT * FROM `user` WHERE `id` = $id");
 $bongkar = mysqli_fetch_assoc($ambil);
 
-$ambil_harga = mysqli_query($conn, "SELECT * FROM `stok` WHERE `id_stok` = 1");
-$galon = mysqli_fetch_assoc($ambil_harga);
-$harga = $galon['harga'];
+$ambil_harga = mysqli_query($conn, "SELECT * FROM `stok` WHERE `id_stok` = 2");
+$gas = mysqli_fetch_assoc($ambil_harga);
+$harga = $gas['harga'];
 
 if (isset($_POST['kirim'])) {
   $id = $bongkar['id'];
@@ -30,12 +30,12 @@ if (isset($_POST['kirim'])) {
     $alamat_kirim = $alamat_lain;
   }
 
-  $hasil = mysqli_query($conn, "INSERT INTO `pesanan`(`id_trans`, `id`, `waktu`, `no_transaksi`, `nama_barang`, `alamat`, `jumlah`, `harga`, `status`) VALUES (NULL,'$id','$waktu','$no_transaksi_kirim','Air Galon','$alamat_kirim','$jumlah','$total','DIPESAN')");
+  $hasil = mysqli_query($conn, "INSERT INTO `pesanan`(`id_trans`, `id`, `waktu`, `no_transaksi`, `nama_barang`, `alamat`, `jumlah`, `harga`, `status`) VALUES (NULL,'$id','$waktu','$no_transaksi_kirim','Gas Elpiji','$alamat_kirim','$jumlah','$total','DIPESAN')");
   if ($hasil > 0) {
     echo "<script>alert('Pesanan telah diajukan!'); document.location.href='dashboard-pengguna.php';</script>";
     exit;
   } else {
-    echo "<script>alert('Mohon maaf pesanan Anda gagal di ajukan!'); document.location.href='dashboard-pengguna.php';</script>";
+    echo "<script>alert('Mohon maaf pesanan Anda gagal di ajukan!'); document.location.href='';</script>";
     exit;
   }
 }
@@ -52,7 +52,7 @@ if (isset($_POST['kirim'])) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Pesan Air Galon - Bangalon</title>
+  <title>Pesan Gas Elpiji - Bangalon</title>
 
   <!-- Custom fonts for this template-->
   <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -72,11 +72,11 @@ if (isset($_POST['kirim'])) {
       <div class="card-body p-0">
         <!-- Nested Row within Card Body -->
         <div class="row">
-          <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+          <div class="col-lg-5 d-none d-lg-block bg-login-image"></div>
           <div class="col-lg-7">
             <div class="p-5">
               <div class="text-center">
-                <h1 class="h4 text-gray-900 mb-4">Pesan Air Galon</h1>
+                <h1 class="h4 text-gray-900 mb-4">Pesan Gas Elpiji</h1>
               </div>
               <form class="user" action="" method="post">
                 <div class="form-group">

@@ -5,6 +5,11 @@ $id = $_SESSION['id'];
 $cek = mysqli_query($conn, "SELECT * FROM `user` WHERE `id` = $id");
 $row = mysqli_fetch_assoc($cek);
 
+$stok_air_galon = mysqli_query($conn, "SELECT * FROM `stok` WHERE `id_stok` = 1");
+$stok_gas_elpiji = mysqli_query($conn, "SELECT * FROM `stok` WHERE `id_stok` = 2");
+$ambil_galon = mysqli_fetch_assoc($stok_air_galon);
+$ambil_gas = mysqli_fetch_assoc($stok_gas_elpiji);
+
 $qpesan = mysqli_query($conn, "SELECT * FROM `pesanan` WHERE `id` = $id");
 
 ?>
@@ -98,8 +103,8 @@ $qpesan = mysqli_query($conn, "SELECT * FROM `pesanan` WHERE `id` = $id");
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">Air Galon</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">Rp. 5.000.</div>
-                      <span class="badge badge-info">Tersedia</span>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">Rp. <?= $ambil_galon['harga']; ?></div>
+                      <span class="badge badge-info"><?= $ambil_galon['status']; ?></span>
                       <a href="pesan-air-galon.php?id=<?= $row['id']; ?>" class="d-none d-sm-inline-block btn btn-primary shadow-sm mt-5"><i class="fas fa-shopping-cart text-white-50"></i> Pesan Sekarang</a>
                     </div>
                   </div>
@@ -113,8 +118,8 @@ $qpesan = mysqli_query($conn, "SELECT * FROM `pesanan` WHERE `id` = $id");
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-lg font-weight-bold text-success text-uppercase mb-1">Gas Elpiji</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">Rp. 27.000.</div>
-                      <span class="badge badge-info">Tersedia</span>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">Rp. <?= $ambil_gas['harga']; ?></div>
+                      <span class="badge badge-info"><?= $ambil_gas['status']; ?></span>
                       <a href="pesan-gas-elpiji.php?id=<?= $row['id']; ?>" class="d-none d-sm-inline-block btn btn-primary shadow-sm mt-5"><i class="fas fa-shopping-cart text-white-50"></i> Pesan Sekarang</a>
                     </div>
                   </div>
