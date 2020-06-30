@@ -33,13 +33,12 @@
         <a class="collapse-item" href="akun-kurir.php">Kurir</a>
       </div>
     </div>
-  </li>
-
-  <!-- Nav Item - Stok Barang -->
+    <!-- Nav Item - Pesanan -->
   <li class="nav-item">
-    <a class="nav-link" href="stok-barang.php">
-      <i class="fas fa-boxes"></i>
-      <span>Stok Barang</span></a>
+    <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
+      <i class="fas fa-sign-out-alt"></i>
+      <span>Keluar</span></a>
+  </li>
   </li>
 
   <!-- Divider -->

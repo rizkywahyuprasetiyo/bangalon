@@ -147,7 +147,7 @@ $stok = mysqli_query($conn, "SELECT * FROM `stok`");
                         <td><?= $rowin['nama_barang']; ?></td>
                         <td><?= $rowin['harga']; ?></td>
                         <td><span class="badge badge-info"><?= $rowin['status']; ?></span></td>
-                        <td><a class="btn btn-primary mr-1 mb-1 btn-sm" href="konfirmasi-pesanan.php?id=<?= $row['no_transaksi']; ?>" role="button"><i class="fas fa-check"></i> Konfirmasi</a><a class="btn btn-success mr-1 mb-1 btn-sm" href="https://api.whatsapp.com/send?phone=<?= $row['nomorwa']; ?>&text=Permisi,%20apakah%20benar%20ini%20dengan%20<?= $row['nama']; ?>?%20Kami%20dari%20bangalon%20ingin%20mengantarkan%20pesanan.%20Terima%20Kasih." role="button"><i class="fab fa-whatsapp"></i> Hubungi</a><a class="btn btn-warning mr-1 mb-1 btn-sm" href="hapus-pesanan.php?id=<?= $row['no_transaksi']; ?>" role="button"><i class="fas fa-trash"></i> Hapus</a></td>
+                        <td><a class="btn btn-info mr-1 mb-1 btn-sm" href="edit-stok.php?id=<?= $rowin['id_stok']; ?>" role="button"><i class="fas fa-edit"></i> edit</a></td>
                       </tr>
                     <?php endwhile; ?>
                   </tbody>
@@ -210,7 +210,7 @@ $stok = mysqli_query($conn, "SELECT * FROM `stok`");
                         <td><?= $row['jumlah']; ?></td>
                         <td><?= $row['harga']; ?></td>
                         <td><span class="badge badge-info"><?= $row['status']; ?></span></td>
-                        <td><a class="btn btn-primary mr-1 mb-1 btn-sm" href="konfirmasi-pesanan.php?id=<?= $row['no_transaksi']; ?>" role="button"><i class="fas fa-check"></i> Konfirmasi</a><a class="btn btn-success mr-1 mb-1 btn-sm" href="https://api.whatsapp.com/send?phone=<?= $row['nomorwa']; ?>&text=Permisi,%20apakah%20benar%20ini%20dengan%20<?= $row['nama']; ?>?%20Kami%20dari%20bangalon%20ingin%20mengantarkan%20pesanan.%20Terima%20Kasih." role="button"><i class="fab fa-whatsapp"></i> Hubungi</a><a class="btn btn-warning mr-1 mb-1 btn-sm" href="hapus-pesanan.php?id=<?= $row['no_transaksi']; ?>" role="button"><i class="fas fa-trash"></i> Hapus</a></td>
+                        <td><a class="btn btn-primary mr-1 mb-1 btn-sm" href="konfirmasi-pesanan.php?id=<?= $row['no_transaksi']; ?>" role="button"><i class="fas fa-check"></i> Konfirmasi</a><a class="btn btn-success mr-1 mb-1 btn-sm" href="https://api.whatsapp.com/send?phone=<?= $row['nomorwa']; ?>&text=Permisi,%20apakah%20benar%20ini%20dengan%20<?= $row['nama']; ?>?%20Kami%20dari%20bangalon%20ingin%20mengantarkan%20pesanan.%20Terima%20Kasih." target="_blank" role="button"><i class="fab fa-whatsapp"></i> Hubungi</a><a class="btn btn-warning mr-1 mb-1 btn-sm" href="hapus-pesanan.php?id=<?= $row['no_transaksi']; ?>" role="button"><i class="fas fa-trash"></i> Hapus</a></td>
                       </tr>
                     <?php endwhile; ?>
                   </tbody>
@@ -223,15 +223,7 @@ $stok = mysqli_query($conn, "SELECT * FROM `stok`");
       </div>
       <!-- End of Main Content -->
 
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2019</span>
-          </div>
-        </div>
-      </footer>
-      <!-- End of Footer -->
+      <?php include 'footer.php'; ?>
 
     </div>
     <!-- End of Content Wrapper -->
@@ -249,15 +241,15 @@ $stok = mysqli_query($conn, "SELECT * FROM `stok`");
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Anda ingin keluar?</h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>
         </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-body">Pilih "Keluar" jika Anda meninginkan untuk keluar dari sistem, Anda bisa masuk kembali nanti.</div>
         <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+          <a class="btn btn-primary" href="keluar.php">Keluar</a>
         </div>
       </div>
     </div>
