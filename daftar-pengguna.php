@@ -22,7 +22,7 @@ if (isset($_POST['register'])) {
 
   $hasil = mysqli_query($conn, "INSERT INTO `user` (`id`, `nama`, `email`, `nomorwa`, `alamat`, `password`) VALUES (NULL, '$nama', '$email', '$nomor', '$alamat', '$password')");
   if ($hasil > 0) {
-    echo "<script>alert('Akun berhasil di daftarkan!'); document.location.href='login.php';</script>";
+    echo "<script>alert('Akun berhasil di daftarkan!'); document.location.href='login-pengguna.php';</script>";
     exit;
   } else {
     echo "<script>alert('Akun gagal di daftarkan!'); document.location.href='';</script>";

@@ -2,7 +2,7 @@
 include 'koneksi.php';
 $ambil = mysqli_query($conn, "SELECT pesanan.no_transaksi, user.nama, pesanan.alamat, pesanan.nama_barang, pesanan.jumlah, pesanan.status, pesanan.harga, user.nomorwa FROM pesanan INNER JOIN user ON pesanan.id = user.id;");
 
-$jumlah_pesanan = mysqli_query($conn, "SELECT COUNT(id_trans) as hasil FROM pesanan");
+$jumlah_pesanan = mysqli_query($conn, "SELECT COUNT(id_trans) as hasil FROM pesanan WHERE `status` = 'DIPESAN'");
 $cetak_jumlah_pesanan = mysqli_fetch_assoc($jumlah_pesanan);
 
 $jumlah_pengguna = mysqli_query($conn, "SELECT COUNT(id) as hasil FROM user");
